@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -19,21 +20,21 @@ class User extends Authenticatable
     use HasTeams;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
+    protected $dates = [
+        'updated_at',
+        'created_at',
+        'deleted_at',
+        'email_verified',
+    ];
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -58,4 +59,30 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    //relation
+
+    public function detail_user()
+    {
+
+        return $this->hasOne('App/Models/DetailUser', 'users_id');
+    }
+
+    public function service()
+    {
+
+        return $this->hasMany('App/Models/Service', 'users_id');
+    }
+    public function order_buyer()
+    {
+
+        return $this->hasMany('App/Models/Order', 'buyer_id');
+    }
+    
+    public function order_freelancer()
+    {
+
+        return $this->hasMany('App/Models/Order', 'freelancer_id');
+    }
 }
