@@ -15,7 +15,6 @@ use App\Http\Controllers\Dashboard\MyOrderController;
 
 
 // Landing
-Route::get('explore', LandingController::class, 'explore')->name('explore.landing');
 Route::get('booking/{id}', LandingController::class, 'booking')->name('booking.landing');
 Route::get('detail_booking/{id}', LandingController::class, 'detail_booking')->name('detail.booking.landing');
 Route::get('detail', LandingController::class, 'detail')->name('detail.landing');
@@ -31,7 +30,7 @@ Route::group(
     function () {
 
         //dashboard
-        Route::resource('dasboard',MemberController::class);
+        Route::resource('dashboard',MemberController::class);
 
         //service
         Route::resource('service', ServiceController::class);
