@@ -25,27 +25,27 @@ Route::resource('/', LandingController::class);
 // Dashboard
 
 Route::group(
-    ['prefix' => 'member', 'as' => 'member', 'middleware' => ['auth:sacntum', 'verified']],
+    ['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sanctum', 'verified']],
 
     function () {
 
         //dashboard
-        Route::resource('dashboard',MemberController::class);
+        Route::resource('dashboard', MemberController::class);
 
         //service
         Route::resource('service', ServiceController::class);
 
         //request
-        Route::get('approve_request/{id}', [RequestController::class,'approve'])->name('approve.request');
+        Route::get('approve_request/{id}', [RequestController::class, 'approve'])->name('approve.request');
         Route::resource('request', RequestController::class);
 
         //my order
-        Route::get('accept/order/{id}', [MyOrderController::class,'accepted'])->name('accept.order');
-        Route::get('reject/order/{id}', [MyOrderController::class,'rejected'])->name('reject.order');
-        Route::resource('order',MyOrderController::class);
+        Route::get('accept/order/{id}', [MyOrderController::class, 'accepted'])->name('accept.order');
+        Route::get('reject/order/{id}', [MyOrderController::class, 'rejected'])->name('reject.order');
+        Route::resource('order', MyOrderController::class);
 
         //profile
-        Route::get('delete_photo',[ProfileController::class,'delete'])->name('delete.photo.profile');
+        Route::get('delete_photo', [ProfileController::class, 'delete'])->name('delete.photo.profile');
         Route::resource('profile', ProfileController::class);
     }
 );

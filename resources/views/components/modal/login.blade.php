@@ -15,6 +15,7 @@
             </div>
             <form action="{{ route('login') }}" method="POST">
                 <!--body-->
+                @csrf
                 <div class="relative flex-auto p-6 mx-10">
                     <div class="mb-4">
                         <label class="block mb-2 text-sm text-grey-darker" for="username">
@@ -24,7 +25,7 @@
                             class="w-full px-4 py-3 text-xs border border-gray-300 rounded-lg appearance-none placeholder-serv-text"
                             id="email" type="text" placeholder="name@domain.com" required autofocus>
                         @if ($errors->has('email'))
-                            <p class="mb-3 text-sm text-red-500">{{ $error->first('email') }}</p>
+                            <p class="mb-3 text-sm text-red-500">{{ $errors->first('email') }}</p>
                         @endif
                     </div>
                     <div>
@@ -36,7 +37,7 @@
                             id="password" type="password" placeholder="At least 8 characters" required
                             autocomplete="current-password">
                         @if ($errors->has('password'))
-                            <p class="mb-3 text-sm text-red-500">{{ $error->first('password') }}</p>
+                            <p class="mb-3 text-sm text-red-500">{{ $errors->first('password') }}</p>
                         @endif
                     </div>
                     <div class="flex items-center justify-between">
