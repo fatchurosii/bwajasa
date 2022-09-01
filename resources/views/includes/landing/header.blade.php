@@ -18,8 +18,8 @@
                 id="menu">
                 <nav
                     class="items-center justify-between pt-8 space-x-0 space-y-6 text-base lg:space-x-12 lg:flex lg:pt-0 lg:space-y-0">
-                    <a href="index.php" class="block font-medium nav-link active">Home</a>
-                    <a href="explore.php" class="block nav-link text-serv-text">Explore</a>
+                    <a href="{{route('index')}}.php" class="block font-medium nav-link active">Home</a>
+                    <a href="{{route('explore.landing')}}" class="block nav-link text-serv-text">Explore</a>
                     <a href="#" class="block nav-link text-serv-text">How It Works</a>
                     <a href="#" class="block nav-link text-serv-text">Stories</a>
                     <a href="#" class="block nav-link text-serv-text">Tips</a>

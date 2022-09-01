@@ -84,7 +84,7 @@ class LandingController extends Controller
     }
 
     public  function explore(){
-        
+        return view ('pages.landing.explore');
     }
 
     public  function booking($id){
@@ -96,6 +96,6 @@ class LandingController extends Controller
     }
 
     public function detail(){
-        
+        return view('pages.landing.detail');
     }
 }
