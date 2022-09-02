@@ -1,10 +1,14 @@
-<!-- Desktop sidebar -->
-<aside class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white md:block" aria-label="aside">
-    <div class="text-serv-bg">
-        <div class="" href="#">
-            <img src="{{ asset('/assets/images/logo.svg') }}" alt="" class="object-center mx-auto my-8 ">
-        </div>
-        <div class="flex items-center pt-8 pl-5 space-x-2 border-t border-gray-100">
+<aside class="fixed inset-y-0 z-20 flex-shrink-0 w-64 overflow-y-auto bg-white md:hidden" x-show="isSideMenuOpen"
+    x-transition:enter="transition ease-in-out duration-150"
+    x-transition:enter-start="opacity-0 transform -translate-x-20" x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0 transform -translate-x-20" @click.away="closeSideMenu"
+    @keydown.escape="closeSideMenu" aria-label="aside">
+    <div class="py-4 text-gray-500 dark:text-gray-400">
+        <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
+            <img src="{{ asset('/assets/images/logo.svg') }}" alt="" class="ml-6">
+        </a>
+        <div class="flex items-center pt-5 pl-5 mt-10 space-x-2 border-t border-gray-100">
             <!--Author's profile photo-->
             <img class="object-cover object-center mr-1 rounded-full w-14 h-14"
                 src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="random user" />
@@ -20,8 +24,8 @@
             <li class="relative px-6 py-3">
                 <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-serv-bg"
                     aria-hidden="true"></span>
-                <a class="inline-flex items-center w-full text-sm font-medium text-gray-800 transition-colors duration-150 hover:text-gray-800 "
-                    href="{{ route('member.dashboard.index') }}">
+                <a class="inline-flex items-center w-full text-sm font-medium text-gray-800 transition-colors duration-150 hover:text-gray-800"
+                    href="index.html">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -133,7 +137,7 @@
             </li>
             <li class="relative px-6 py-3">
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
-                    href="{{ route('logout') }}"
+                    href="{{ 'logout' }}"
                     onclick="event.preventDefault(); document.getElementById('form-logout').submit();">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -145,8 +149,8 @@
                             stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                         <path d="M9.5 12L20 12" stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                     </svg>
-                    <span class="ml-4">Logout</span>
-                    <form action="{{ route('logout') }}" method="POST" id="form-logout" style="display: none;">
+                    <span class="ml-4">Log out</span>
+                    <form action="{{ 'logout' }}" method="POST" id="form-logout" style="display: none;">
                         @csrf
                     </form>
                 </a>
